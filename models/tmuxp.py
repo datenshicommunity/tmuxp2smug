@@ -70,7 +70,7 @@ class config:
     return yaml.dump(data)
 
 def parse(filename):
-  rawConfig = yaml.load(open(filename).read())
+  rawConfig = yaml.load(open(filename).read(), Loader=yaml.Loader)
   cfg = config(rawConfig['session_name'], rawConfig.get('start_directory', None))
   for shellLine in rawConfig.get('shell_command_before', []):
     cfg.initializer.append(shellLine)
